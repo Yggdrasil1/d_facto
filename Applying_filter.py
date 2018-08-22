@@ -2,12 +2,9 @@
 # -*- coding: utf-8 -*-
 """
 Created on Mon Aug 28 14:30:50 2017
-    
-@author: recon2
-    
-this script is the first attempt to make a single function that return a list with different filtered 
-images of the same image with different filters
-    
+
+For questions and suggestions pls contact: 
+k.a.i.winkler@gmx.de    
 """
     
 import numpy as np
@@ -44,7 +41,7 @@ class RGBfilter:
         
         returns:
             
-        List [image, filter names, calculation time]
+        List [image, filter name, calculation time]
         
         """
         
@@ -102,13 +99,13 @@ class RGBfilter:
         
         Keyword arguments:
         
-        filter_nr --
-        save_filter --
-        savedirectory --
+        filter_nr -- int value that represents the filter
+        save_filter -- boolean value, if true the images of the filters get saved
+        savedirectory -- filepath to the directory where the images shall be saved to
             
         returns:
         
-        
+        ndarray [#channels,[R,G,B]]
         """
         
         
@@ -857,6 +854,15 @@ class RGBfilter:
         Apply a given filter to a given image and return the filtered image
         
         
+        Keyword arguments:
+        
+        rawdata -- ndarray with the logarithmized and normalized original data
+        rgbfilter -- ndarray with a RGB-filter
+        
+        returns:
+        
+        RGB-image-array
+      
         
         """
         #creates the array that gets added to the list, filled with zeros, later get filled with filtered data
@@ -876,8 +882,18 @@ class RGBfilter:
         return output_array
     
     def gaussian(x, mu, sig):
-        #calculates the value for a given x on a gaussian curve with mean mu and 
-        #standard deviation sig
+        """
+        calculates the value on a gaussian curve for a given value with a 
+        certain mean and standard deviation
+        
+        Keyword arguments:
+            
+        x -- single value or list of values
+        
+        
+        """
+        
+        
             return np.exp(-np.power(x - mu, 2.) / (2 * np.power(sig, 2.)))
     
     def rgbnorm(temp):
